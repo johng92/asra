@@ -1,0 +1,54 @@
+@use "sass:map";
+
+/* --------------------------------
+   Font Sizes
+--------------------------------- */
+
+$font-sizes: (
+    "display": clamp(3.5rem, 5vw, 6rem),
+    "h1": clamp(3rem, 4vw, 4.8rem),
+    "h2": clamp(2.6rem, 3vw, 4rem),
+    "h3": clamp(2.2rem, 2.5vw, 3rem),
+    "h4": 2.4rem,
+    "body": 1.8rem,
+    "small": 1.5rem,
+    "caption": 1.3rem
+);
+
+
+/* --------------------------------
+   Font Weights
+--------------------------------- */
+
+$font-weights: (
+    "thin": 100,
+    "light": 300,
+    "regular": 400,
+    "medium": 500,
+    "semibold": 600,
+    "bold": 700,
+    "black": 900
+);
+
+
+/* --------------------------------
+   Functions
+--------------------------------- */
+
+@function font-size($name) {
+    @return map.get($font-sizes, $name);
+}
+
+@function font-weight($name) {
+    @return map.get($font-weights, $name);
+}
+
+//HOW YOU WILL USE??
+//    @use "../abstracts/typography" as type;
+
+//    .hero__title {
+//      font-size: type.font-size("display");  font-size is func call, and (display) is argument...
+//      font-weight: type.font-weight("bold");
+//    }
+
+// ...then, map.get() looks inside $font-sizes and find display means 3.5rem

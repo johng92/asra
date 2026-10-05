@@ -1,0 +1,11 @@
+@use "../base/typography" as type;
+
+.sec-sub-title {
+    font-size: type.font-size("h3");
+    font-weight: type.font-weight("medium");
+    color: var(--color-text);
+
+    transition: color 0.25s ease-in-out;
+
+    text-align: start;
+}

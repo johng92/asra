@@ -1,0 +1,38 @@
+@use "../abstracts/gradients" as grad;
+
+.back-to-top {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    border-radius: 50%;
+
+    background: grad.gradient("gradient-primary");
+
+    cursor: pointer;
+
+    opacity: 0;
+    pointer-events: none;
+
+    transform: translateY(20px);
+
+    transition:
+        opacity 0.3s ease,
+        transform 0.3s ease;
+
+    z-index: 999;
+}
+
+.back-to-top.show-back-to-top {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}

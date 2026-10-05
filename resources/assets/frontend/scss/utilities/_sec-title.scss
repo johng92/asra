@@ -1,0 +1,8 @@
+@use "../base/typography" as type;
+
+.sec-title {
+    font-size: type.font-size("h2");
+    font-weight: type.font-weight("black");
+    color: var(--color-primary-dark);
+    text-align: center;
+}
