@@ -1,0 +1,21 @@
+@use "../abstracts/typography" as type;
+@use "../utilities/padding" as pad;
+
+.cta {
+    color: var(--color-text-on-dark);
+    background-color: var(--color-primary);
+
+    font-size: type.font-size("small");
+    font-weight: type.font-weight("semibold");
+
+    padding:
+        pad.padding-st-v("sm")
+        pad.padding-st-h("lg");
+
+    border: 1px solid var(--color-primary);
+
+    &:hover {
+        background-color: var(--color-primary-dark);
+        color: var(--color-text-on-dark);
+    }
+}

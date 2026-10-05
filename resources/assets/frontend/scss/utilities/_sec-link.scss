@@ -1,0 +1,21 @@
+@use "../base/typography" as type;
+@use "../utilities/padding" as pad;
+
+.sec-link {
+    color: var(--color-primary);
+    background-color: var(--color-white);
+
+    border: 1px solid var(--color-primary);
+
+    font-size: type.font-size("small");
+    font-weight: type.font-weight("semibold");
+
+    padding:
+        pad.padding-st-v("sm")
+        pad.padding-st-h("lg");
+
+    &:hover {
+        background-color: var(--color-primary);
+        color: var(--color-text-on-dark);
+    }
+}
