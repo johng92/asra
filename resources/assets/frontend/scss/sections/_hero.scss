@@ -1,0 +1,6 @@
+@use "../abstracts/typography" as type;
+
+.hero__title {
+    font-size: type.font-size("display");
+    color:  red;
+}
