@@ -13,6 +13,8 @@
 <body>
     <section class="hero">
         <h2 class="hero__title">Hello World</h2>
+        <p class="hero__para">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Possimus excepturi doloremque aliquam voluptates. Molestiae ratione ipsa quisquam! Reprehenderit, ea nulla!</p>
+        <button class="cta">Donate</button>
     </section>
 </body>
 </html>
