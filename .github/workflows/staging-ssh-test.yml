@@ -1,0 +1,33 @@
+name: Staging SSH Test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  ssh-test:
+    runs-on: ubuntu-latest
+
+    environment: staging
+
+    steps:
+      - name: Test SSH connection
+        env:
+          SSH_KEY: ${{ secrets.STAGING_SSH_KEY }}
+          SSH_HOST: ${{ secrets.STAGING_HOST }}
+          SSH_PORT: ${{ secrets.STAGING_PORT }}
+          SSH_USER: ${{ secrets.STAGING_USER }}
+
+        run: |
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+
+          printf '%s\n' "$SSH_KEY" > ~/.ssh/asra_staging_deploy
+          chmod 600 ~/.ssh/asra_staging_deploy
+
+          ssh-keyscan -p "$SSH_PORT" "$SSH_HOST" >> ~/.ssh/known_hosts
+
+          ssh \
+            -i ~/.ssh/asra_staging_deploy \
+            -p "$SSH_PORT" \
+            "$SSH_USER@$SSH_HOST" \
+            "echo 'SSH connection successful'; echo 'User:'; whoami; echo 'Home:'; pwd"
