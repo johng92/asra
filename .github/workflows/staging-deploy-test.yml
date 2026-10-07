@@ -1,0 +1,36 @@
+name: Staging Deployment Test
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  deployment-test:
+    runs-on: ubuntu-latest
+
+    environment: staging
+
+    steps:
+      - name: Verify staging directory
+        env:
+          SSH_KEY: ${{ secrets.STAGING_SSH_KEY }}
+          SSH_HOST: ${{ vars.STAGING_HOST }}
+          SSH_PORT: ${{ vars.STAGING_PORT }}
+          SSH_USER: ${{ vars.STAGING_USER }}
+          STAGING_PATH: ${{ vars.STAGING_PATH }}
+
+        run: |
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+
+          printf '%s\n' "$SSH_KEY" > ~/.ssh/asra_staging_deploy
+          chmod 600 ~/.ssh/asra_staging_deploy
+
+          ssh-keyscan -p "$SSH_PORT" "$SSH_HOST" >> ~/.ssh/known_hosts
+
+          ssh \
+            -i ~/.ssh/asra_staging_deploy \
+            -p "$SSH_PORT" \
+            "$SSH_USER@$SSH_HOST" \
+            "echo 'SSH connection successful'; echo 'Checking staging path:'; echo '$STAGING_PATH'; test -d '$STAGING_PATH'; echo 'Directory exists'; ls -la '$STAGING_PATH'"
