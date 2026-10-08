@@ -1,0 +1,157 @@
+name: Deploy ASRA to Staging
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    environment: staging
+
+    steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: ctype,curl,dom,fileinfo,filter,hash,mbstring,openssl,pcre,pdo,pdo_mysql,session,tokenizer,xml
+          coverage: none
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+
+      - name: Install Composer dependencies
+        run: composer install --no-dev --prefer-dist --optimize-autoloader
+
+      - name: Install Node dependencies
+        run: npm ci
+
+      - name: Build frontend assets
+        run: npm run build
+
+      - name: Prepare staging public directory
+        run: |
+          mkdir -p deployment-package/public
+          cp -R public/. deployment-package/public/
+          cp deployment/staging/index.php deployment-package/public/index.php
+          cp deployment/staging/.htaccess deployment-package/public/.htaccess
+
+      - name: Prepare application package
+        run: |
+          mkdir -p deployment-package/app
+
+          rsync -a \
+            --exclude='.git/' \
+            --exclude='.github/' \
+            --exclude='node_modules/' \
+            --exclude='public/' \
+            --exclude='tests/' \
+            --exclude='.env' \
+            ./ deployment-package/app/
+
+      - name: Create deployment archives
+        run: |
+          tar -czf asra-app.tar.gz -C deployment-package/app .
+          tar -czf asra-public.tar.gz -C deployment-package/public .
+
+      - name: Configure SSH
+        env:
+          SSH_KEY: ${{ secrets.STAGING_SSH_KEY }}
+          SSH_HOST: ${{ vars.STAGING_HOST }}
+          SSH_PORT: ${{ vars.STAGING_PORT }}
+        run: |
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+
+          printf '%s\n' "$SSH_KEY" > ~/.ssh/asra_staging_deploy
+          chmod 600 ~/.ssh/asra_staging_deploy
+
+          ssh-keyscan -p "$SSH_PORT" "$SSH_HOST" >> ~/.ssh/known_hosts
+
+      - name: Upload deployment packages
+        env:
+          SSH_HOST: ${{ vars.STAGING_HOST }}
+          SSH_PORT: ${{ vars.STAGING_PORT }}
+          SSH_USER: ${{ vars.STAGING_USER }}
+        run: |
+          scp \
+            -i ~/.ssh/asra_staging_deploy \
+            -P "$SSH_PORT" \
+            asra-app.tar.gz \
+            asra-public.tar.gz \
+            "$SSH_USER@$SSH_HOST:/tmp/"
+
+      - name: Deploy to Hostinger
+        env:
+          SSH_HOST: ${{ vars.STAGING_HOST }}
+          SSH_PORT: ${{ vars.STAGING_PORT }}
+          SSH_USER: ${{ vars.STAGING_USER }}
+          STAGING_PATH: ${{ vars.STAGING_PATH }}
+          STAGING_APP_KEY: ${{ secrets.STAGING_APP_KEY }}
+          STAGING_DB_PASSWORD: ${{ secrets.STAGING_DB_PASSWORD }}
+        run: |
+          ssh \
+            -i ~/.ssh/asra_staging_deploy \
+            -p "$SSH_PORT" \
+            "$SSH_USER@$SSH_HOST" \
+            "STAGING_PATH='$STAGING_PATH' STAGING_APP_KEY='$STAGING_APP_KEY' STAGING_DB_PASSWORD='$STAGING_DB_PASSWORD' bash -s" <<'REMOTE'
+
+          set -e
+
+          APP_PATH="/home/u276257213/domains/onlinejohn.net/asra-staging"
+          PUBLIC_PATH="$STAGING_PATH"
+
+          mkdir -p "$APP_PATH"
+          mkdir -p "$PUBLIC_PATH"
+
+          tar -xzf /tmp/asra-app.tar.gz -C "$APP_PATH"
+          tar -xzf /tmp/asra-public.tar.gz -C "$PUBLIC_PATH"
+
+          cat > "$APP_PATH/.env" <<EOF
+          APP_NAME=ASRA
+          APP_ENV=staging
+          APP_KEY=$STAGING_APP_KEY
+          APP_DEBUG=false
+          APP_URL=https://demo-ngo.onlinejohn.net
+
+          LOG_CHANNEL=stack
+          LOG_STACK=single
+          LOG_LEVEL=error
+
+          DB_CONNECTION=mysql
+          DB_HOST=127.0.0.1
+          DB_PORT=3306
+          DB_DATABASE=u276257213_asra_staging
+          DB_USERNAME=u276257213_asra_stage
+          DB_PASSWORD=$STAGING_DB_PASSWORD
+
+          SESSION_DRIVER=file
+          SESSION_LIFETIME=120
+
+          CACHE_STORE=file
+          QUEUE_CONNECTION=sync
+          EOF
+
+          cd "$APP_PATH"
+
+          php artisan migrate --force
+          php artisan optimize:clear
+          php artisan config:cache
+          php artisan route:cache
+          php artisan view:cache
+
+          rm -f /tmp/asra-app.tar.gz
+          rm -f /tmp/asra-public.tar.gz
+
+          echo "ASRA staging deployment completed."
+
+          REMOTE
