@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 
 define('LARAVEL_START', microtime(true));
 
-$appPath = dirname(__DIR__, 3) . '/asra-staging';
+$appPath = dirname(__DIR__, 2) . '/asra-staging';
 
 if (file_exists($maintenance = $appPath . '/storage/framework/maintenance.php')) {
     require $maintenance;
