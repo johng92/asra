@@ -11,6 +11,9 @@
         ])
 </head>
 <body>
-    <h1>Hello World</h1>
+    <section class="hero">
+        <h1 class="hero__title">Hello World</h1>
+        <p class="hero__para">Asra demo website will be presented soon.</p>
+    </section>
 </body>
 </html>
