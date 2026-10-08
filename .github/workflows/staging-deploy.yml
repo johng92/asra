@@ -14,23 +14,40 @@ jobs:
     steps:
 
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.3'
+          php-version: '8.4'
           extensions: ctype,curl,dom,fileinfo,filter,hash,mbstring,openssl,pcre,pdo,pdo_mysql,session,tokenizer,xml
           coverage: none
+          tools: composer
+
+      - name: Verify PHP and Composer
+        run: |
+          php -v
+          composer --version
+
+      - name: Validate Composer configuration
+        run: composer validate --strict
+
+      - name: Install Composer dependencies
+        run: composer install --no-dev --prefer-dist --optimize-autoloader --no-interaction
+
+      - name: Verify Composer platform requirements
+        run: composer check-platform-reqs --no-dev
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: '24'
           cache: npm
 
-      - name: Install Composer dependencies
-        run: composer install --no-dev --prefer-dist --optimize-autoloader
+      - name: Verify Node and npm
+        run: |
+          node -v
+          npm -v
 
       - name: Install Node dependencies
         run: npm ci
@@ -38,16 +55,16 @@ jobs:
       - name: Build frontend assets
         run: npm run build
 
-      - name: Prepare staging public directory
+      - name: Prepare deployment package
         run: |
-          mkdir -p deployment-package/public
-          cp -R public/. deployment-package/public/
-          cp deployment/staging/index.php deployment-package/public/index.php
-          cp deployment/staging/.htaccess deployment-package/public/.htaccess
+          set -e
 
-      - name: Prepare application package
-        run: |
-          mkdir -p deployment-package/app
+          PACKAGE_DIR="$RUNNER_TEMP/asra-package"
+
+          mkdir -p "$PACKAGE_DIR/app"
+          mkdir -p "$PACKAGE_DIR/public"
+
+          echo "Preparing application package..."
 
           rsync -a \
             --exclude='.git/' \
@@ -56,38 +73,62 @@ jobs:
             --exclude='public/' \
             --exclude='tests/' \
             --exclude='.env' \
-            ./ deployment-package/app/
+            --exclude='deployment/' \
+            --exclude='deployment-package/' \
+            ./ "$PACKAGE_DIR/app/"
 
-      - name: Create deployment archives
-        run: |
-          tar -czf asra-app.tar.gz -C deployment-package/app .
-          tar -czf asra-public.tar.gz -C deployment-package/public .
+          echo "Preparing public package..."
+
+          cp -R public/. "$PACKAGE_DIR/public/"
+
+          cp deployment/staging/index.php \
+             "$PACKAGE_DIR/public/index.php"
+
+          cp deployment/staging/.htaccess \
+             "$PACKAGE_DIR/public/.htaccess"
+
+          echo "Creating deployment archives..."
+
+          tar -czf "$RUNNER_TEMP/asra-app.tar.gz" \
+            -C "$PACKAGE_DIR/app" .
+
+          tar -czf "$RUNNER_TEMP/asra-public.tar.gz" \
+            -C "$PACKAGE_DIR/public" .
+
+          echo "Deployment packages created."
 
       - name: Configure SSH
         env:
           SSH_KEY: ${{ secrets.STAGING_SSH_KEY }}
           SSH_HOST: ${{ vars.STAGING_HOST }}
           SSH_PORT: ${{ vars.STAGING_PORT }}
+
         run: |
+          set -e
+
           mkdir -p ~/.ssh
           chmod 700 ~/.ssh
 
           printf '%s\n' "$SSH_KEY" > ~/.ssh/asra_staging_deploy
           chmod 600 ~/.ssh/asra_staging_deploy
 
-          ssh-keyscan -p "$SSH_PORT" "$SSH_HOST" >> ~/.ssh/known_hosts
+          ssh-keyscan -p "$SSH_PORT" "$SSH_HOST" \
+            >> ~/.ssh/known_hosts
 
       - name: Upload deployment packages
         env:
           SSH_HOST: ${{ vars.STAGING_HOST }}
           SSH_PORT: ${{ vars.STAGING_PORT }}
           SSH_USER: ${{ vars.STAGING_USER }}
+
         run: |
+          set -e
+
           scp \
             -i ~/.ssh/asra_staging_deploy \
             -P "$SSH_PORT" \
-            asra-app.tar.gz \
-            asra-public.tar.gz \
+            "$RUNNER_TEMP/asra-app.tar.gz" \
+            "$RUNNER_TEMP/asra-public.tar.gz" \
             "$SSH_USER@$SSH_HOST:/tmp/"
 
       - name: Deploy to Hostinger
@@ -96,30 +137,62 @@ jobs:
           SSH_PORT: ${{ vars.STAGING_PORT }}
           SSH_USER: ${{ vars.STAGING_USER }}
           STAGING_PATH: ${{ vars.STAGING_PATH }}
+
           STAGING_APP_KEY: ${{ secrets.STAGING_APP_KEY }}
           STAGING_DB_PASSWORD: ${{ secrets.STAGING_DB_PASSWORD }}
+
         run: |
+          set -e
+
+          APP_KEY_B64=$(printf '%s' "$STAGING_APP_KEY" | base64 -w 0)
+          DB_PASSWORD_B64=$(printf '%s' "$STAGING_DB_PASSWORD" | base64 -w 0)
+
           ssh \
             -i ~/.ssh/asra_staging_deploy \
             -p "$SSH_PORT" \
             "$SSH_USER@$SSH_HOST" \
-            "STAGING_PATH='$STAGING_PATH' STAGING_APP_KEY='$STAGING_APP_KEY' STAGING_DB_PASSWORD='$STAGING_DB_PASSWORD' bash -s" <<'REMOTE'
+            "STAGING_PATH='$STAGING_PATH' APP_KEY_B64='$APP_KEY_B64' DB_PASSWORD_B64='$DB_PASSWORD_B64' bash -s" <<'REMOTE'
 
           set -e
 
           APP_PATH="/home/u276257213/domains/onlinejohn.net/asra-staging"
           PUBLIC_PATH="$STAGING_PATH"
+          PHP_BIN="/opt/alt/php84/usr/bin/php"
+
+          echo "======================================"
+          echo "ASRA staging deployment"
+          echo "======================================"
+
+          echo "Checking PHP 8.4..."
+
+          "$PHP_BIN" -v
+
+          echo "Checking PDO MySQL..."
+
+          "$PHP_BIN" -m | grep -Ei '^pdo_mysql$'
+
+          echo "Creating deployment directories..."
 
           mkdir -p "$APP_PATH"
           mkdir -p "$PUBLIC_PATH"
 
+          echo "Extracting Laravel application..."
+
           tar -xzf /tmp/asra-app.tar.gz -C "$APP_PATH"
+
+          echo "Extracting public files..."
+
           tar -xzf /tmp/asra-public.tar.gz -C "$PUBLIC_PATH"
+
+          echo "Creating staging environment file..."
+
+          APP_KEY=$(printf '%s' "$APP_KEY_B64" | base64 -d)
+          DB_PASSWORD=$(printf '%s' "$DB_PASSWORD_B64" | base64 -d)
 
           cat > "$APP_PATH/.env" <<EOF
           APP_NAME=ASRA
           APP_ENV=staging
-          APP_KEY=$STAGING_APP_KEY
+          APP_KEY=$APP_KEY
           APP_DEBUG=false
           APP_URL=https://demo-ngo.onlinejohn.net
 
@@ -132,7 +205,7 @@ jobs:
           DB_PORT=3306
           DB_DATABASE=u276257213_asra_staging
           DB_USERNAME=u276257213_asra_stage
-          DB_PASSWORD=$STAGING_DB_PASSWORD
+          DB_PASSWORD=$DB_PASSWORD
 
           SESSION_DRIVER=file
           SESSION_LIFETIME=120
@@ -141,17 +214,37 @@ jobs:
           QUEUE_CONNECTION=sync
           EOF
 
+          chmod 600 "$APP_PATH/.env"
+
           cd "$APP_PATH"
 
-          php artisan migrate --force
-          php artisan optimize:clear
-          php artisan config:cache
-          php artisan route:cache
-          php artisan view:cache
+          echo "Running database migrations..."
+
+          "$PHP_BIN" artisan migrate --force
+
+          echo "Clearing Laravel caches..."
+
+          "$PHP_BIN" artisan optimize:clear
+
+          echo "Caching Laravel configuration..."
+
+          "$PHP_BIN" artisan config:cache
+
+          echo "Caching Laravel routes..."
+
+          "$PHP_BIN" artisan route:cache
+
+          echo "Caching Laravel views..."
+
+          "$PHP_BIN" artisan view:cache
+
+          echo "Removing temporary deployment files..."
 
           rm -f /tmp/asra-app.tar.gz
           rm -f /tmp/asra-public.tar.gz
 
+          echo "======================================"
           echo "ASRA staging deployment completed."
+          echo "======================================"
 
           REMOTE
