@@ -16,7 +16,7 @@
     <!-- /*********************************************/ -->
       <header class="header padd ">
       <a class="header__logo" href="index.html">
-              <img src="{{ Vite::asset('resources/assets/frontend/images/logo3.png') }}" alt="">
+              <img src="{{ asset('frontend/images/logo3.png') }}" alt="">
       </a>
 
       <nav class="header__nav">
