@@ -1,0 +1,67 @@
+@use "../utilities/padding" as pad;
+@use "../base/typography" as type;
+/* ----*----*--- Header */
+.header {
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    &__logo {
+        font-size: 1rem;
+        color: var(--color-white);
+        width: 7rem;
+        height: 100%;
+        img {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    &__nav li:first-child .header__nav-link {
+        color: var(--color-red-700);
+    }
+    &__nav-links {
+        display: flex;
+        gap: 1.4rem;
+    }
+
+    &__nav-link {
+        font-size: 1rem;
+        transition: all 0.45s ease-in-out;
+        font-size: type.font-size("caption");
+        // color: ;
+        &:focus {
+            text-decoration: underline;
+        }
+
+        &:hover {
+            color: var(--color-red-700);
+        }
+    }
+
+    &__donate-btn {
+        border: none;
+        background: none;
+        display: flex;
+        gap: 1rem;
+
+        i {
+            font-size: type.font-size("small");
+            align-self: center;
+            color: var(--color-red-700);
+        }
+        a {
+            color: var(--color-white);
+            padding: pad.padding-st-v("xs");
+            border-radius: 18px;
+            border: none;
+            font-weight: 600;
+            background-color: var(--color-red-700);
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}

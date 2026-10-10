@@ -1,0 +1,94 @@
+@use "../../utilities/padding" as pad;
+@use "../../abstracts/gradient" as grad;
+@use "../../abstracts/colors" as clrs;
+@use "../../base/typography" as type;
+
+@media screen and (max-width: 768px) {
+    /* -------------------------- Header */
+
+    .header {
+        &__nav {
+            flex-direction: column;
+            justify-content: center;
+            background-color: var(--color-gray-900);
+            transition: all 0.55s ease-in-out;
+            width: 50vw;
+            height: 100vh;
+            gap: 2rem;
+            position: fixed;
+            top: 0;
+            right: 0;
+            transform: translateX(400rem);
+            z-index: 9;
+        }
+
+        &__nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+
+            padding: pad.padding-st-h("lg");
+            align-items: center;
+        }
+
+        &__nav-link {
+            color: var(--color-white);
+        }
+    }
+
+    .header__nav li:first-child .header__nav-link {
+        color: var(--color-white);
+    }
+
+    .hamburger {
+        // height: 5rem;
+        width: 4rem;
+        top: 2rem;
+        right: 5rem;
+        background-color: var(--color-gray-900);
+        padding: pad.padding-st-v(xs);
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 1rem;
+
+        z-index: 999;
+    }
+
+    .hamburger__line {
+        height: 2px;
+        background-color: var(--color-white);
+    }
+
+    .hamburger__line:first-child {
+        width: 50%;
+        transition: all 0.25s ease;
+    }
+
+    .hamburger__line:nth-child(2) {
+        transition: all 0.1s ease;
+    }
+    .hamburger__line:last-child {
+        width: 50%;
+        transition: all 0.25s ease;
+        align-self: flex-end;
+    }
+
+    /* DYNAMIC CLASS (will be added from js) */
+    .display__nav {
+        transform: translateX(0);
+    }
+
+    .hamburger__line-1 {
+        transform: rotate(52deg) translateX(0.7rem) translateY(0.7rem);
+    }
+
+    .hamburger__line-2 {
+        visibility: hidden;
+    }
+
+    .hamburger__line-3 {
+        transform: rotate(-44deg) translateX(-0.2rem) translateY(-2.1rem);
+    }
+}
