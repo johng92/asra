@@ -14,7 +14,7 @@
 <body class="">
     <!------------header--------->
     <!-- /*********************************************/ -->
-      <header class="header padd ">
+      <header class="header ">
       <a class="header__logo" href="index.html">
               <img src="{{ asset('frontend/images/logo3.png') }}" alt="">
       </a>
