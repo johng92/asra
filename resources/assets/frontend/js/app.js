@@ -18,19 +18,3 @@ burger.addEventListener("click", function() {
   nav.classList.toggle("display__nav");
 })
 
-// dark Mode 
-
-
-const button = document.getElementById('toggle-btn');
-
-function darkMode() {
-  document.body.classList.toggle('dark-theme');
-
-  if (document.body.classList.contains('dark-theme')) {
-    button.textContent = 'Switch to Light Mode';
-  } else {
-    button.textContent = 'Switch to Dark Mode';
-  }
-}
-
-button.addEventListener('click', darkMode);

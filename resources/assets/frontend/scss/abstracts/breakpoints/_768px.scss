@@ -14,7 +14,8 @@
             transition: all 0.55s ease-in-out;
             width: 50vw;
             height: 100vh;
-            gap: 2rem;
+
+            align-content: center;
             position: fixed;
             top: 0;
             right: 0;
@@ -25,7 +26,6 @@
         &__nav-links {
             display: flex;
             flex-direction: column;
-            gap: 2rem;
 
             padding: pad.padding-st-h("lg");
             align-items: center;
@@ -41,19 +41,21 @@
     }
 
     .hamburger {
-        // height: 5rem;
-        width: 4rem;
+        // height: 6.5rem;
+        width: 3.3rem;
         top: 2rem;
         right: 5rem;
-        background-color: var(--color-gray-900);
+        background-color: var(--color-gray-600);
         padding: pad.padding-st-v(xs);
         cursor: pointer;
         display: flex;
         flex-direction: column;
         justify-content: center;
-        gap: 1rem;
+        // gap: 0.6rem;
+        gap: 0.3rem;
 
         z-index: 999;
+        border-radius: 2px;
     }
 
     .hamburger__line {
@@ -81,7 +83,7 @@
     }
 
     .hamburger__line-1 {
-        transform: rotate(52deg) translateX(0.7rem) translateY(0.7rem);
+        transform: rotate(43deg) translateX(0.7rem) translateY(0.1rem);
     }
 
     .hamburger__line-2 {
@@ -89,6 +91,6 @@
     }
 
     .hamburger__line-3 {
-        transform: rotate(-44deg) translateX(-0.2rem) translateY(-2.1rem);
+        transform: rotate(-48deg) translateX(-0.2rem) translateY(-0.8rem);
     }
 }
