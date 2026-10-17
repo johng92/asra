@@ -45,5 +45,29 @@
     </header>
 
 
+    <!----------------HERO------------------>
+    <!-- /*********************************************/ -->
+    <section class="hero ">
+      <div class="hero__content">
+        <h5 class="hero__mini-title">ELDERLY CARE IN JHARKHAND</h5>
+        <h1 class="hero__content-title">
+          Respectful Aging for a Brighter Tomorrow
+        </h1>
+
+        <p class="hero__content-para">
+          Lorem ipsum dolor sit, amquibusdam eveniet fugit laborum nulla dolor,
+          nihil quisqias ad enim nostrum?
+        </p>
+
+        <div class="hero__links">
+          <a href="#" class="hero__links-support">Support Our Work</a>
+          <a href="#" class="hero__links-story">Watch Our Story</a>
+        </div>
+      </div>
+
+      <figure class="hero__bg">
+        <img src="{{ asset('frontend/images/hero.jpg') }}" alt="">
+      </figure>
+    </section>
 </body>
 </html>
