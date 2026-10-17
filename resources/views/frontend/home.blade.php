@@ -69,5 +69,56 @@
         <img src="{{ asset('frontend/images/hero.jpg') }}" alt="">
       </figure>
     </section>
+
+    <!-- ---------------impact------------------------ -->
+
+    <section class="impact">
+      <div class="impact__items ">
+        <div class="impact__item">
+          <a href="#" class="impact__icon"
+            ><i class="fa-solid fa-people-group"></i
+          ></a>
+          <div class="impact__content">
+            <h2 class="impact__content-number sec-title">500+</h2>
+            <p class="impact__content-para section__para">
+              Elderly lives Touched
+            </p>
+          </div>
+        </div>
+        <div class="impact__item">
+          <a href="#" class="impact__icon"
+            ><i class="fa-solid fa-house-chimney"></i
+          ></a>
+          <div class="impact__content">
+            <h2 class="impact__content-number sec-title">25+</h2>
+            <p class="impact__content-para section__para">Villoges Covred</p>
+          </div>
+        </div>
+        <div class="impact__item">
+          <a href="#" class="impact__icon"><i class="fa-solid fa-heart"></i></a>
+          <div class="impact__content">
+            <h2 class="impact__content-number sec-sub-para">
+              Livelihood Support
+            </h2>
+            <p class="impact__content-para section__para">
+              For a better tomorrow
+            </p>
+          </div>
+        </div>
+        <div class="impact__item">
+          <a href="#" class="impact__icon">
+            <i class="fa-solid fa-users"></i>
+          </a>
+          <div class="impact__content">
+            <h2 class="impact__content-number sec-sub-para">
+              community Driven
+            </h2>
+            <p class="impact__content-para section__para">
+              By People, for peopel
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
 </body>
 </html>
