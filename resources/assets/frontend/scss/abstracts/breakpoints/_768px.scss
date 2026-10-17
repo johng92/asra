@@ -93,4 +93,14 @@
     .hamburger__line-3 {
         transform: rotate(-48deg) translateX(-0.2rem) translateY(-0.8rem);
     }
+
+    // ********************************HERO***********************************************************************************************************************
+
+    .hero {
+
+        display: flex;
+        flex-direction: column;
+    } 
+
+
 }
