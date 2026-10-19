@@ -1,0 +1,63 @@
+:root {
+
+  /* ========================================
+     BRAND PALETTE
+     ======================================== */
+
+  --color-green-900: #163D26;
+  --color-green-700: #2F6B3A;
+  --color-green-100: #E8F0DF;
+
+  --color-orange-600: #D85A2A;
+  --color-orange-100: #FCE9DF;
+
+  --color-cream: #F8F4EA;
+
+  --color-white: #FFFFFF;
+
+  --color-gray-900: #20251F;
+  --color-gray-600: #5C625C;
+  --color-gray-200: #E7E9E4;
+
+/* ========================================
+  FEEDBACK / STATUS PALETTE
+  ======================================== */
+
+  --color-red-700: #B42318;
+  --color-red-100: #FEE4E2;
+
+  --color-green-success: #287A45;
+  --color-green-success-light: #E8F5EC;
+  
+  /* ========================================
+     SEMANTIC TOKENS ✅ you will be using.
+     ======================================== */
+
+  --color-bg: var(--color-cream);
+  --color-surface: var(--color-white);
+
+  --color-text: var(--color-gray-900);
+  --color-text-muted: var(--color-gray-600);
+
+  --color-primary: var(--color-green-700);
+  --color-primary-dark: var(--color-green-900);
+  --color-primary-light: var(--color-green-100);
+
+  --color-action: var(--color-orange-600);
+  --color-action-light: var(--color-orange-100);
+
+  --color-border: var(--color-gray-200);
+
+  --color-text-on-dark: var(--color-white);
+
+
+/* ========================================
+  SEMANTIC COLORS for FEEDBACK
+  ======================================== */
+
+  --color-error: var(--color-red-700);
+  --color-error-bg: var(--color-red-100);
+
+  --color-success: var(--color-green-success);
+  --color-success-bg: var(--color-green-success-light);
+}

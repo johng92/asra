@@ -1,0 +1,8 @@
+@use "../base/typography" as type;
+
+.sec-para {
+    font-size: type.font-size("body");
+    color: var(--color-text-muted);
+    text-align: start;
+    margin-bottom: 2rem;
+}

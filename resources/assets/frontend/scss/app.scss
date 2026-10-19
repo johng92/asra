@@ -1,0 +1,10 @@
+@use "base";
+@use "layout";
+// @use "components";
+@use "utilities";
+@use "components";
+@use "pages";
+@use "./sections/index"; //THIS LOADED THE STYLES.
+@use "abstracts";
+
+// @import "../vendors/lightbox/lightbox.css"; it's loading from app.js 's import

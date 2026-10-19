@@ -1,0 +1,58 @@
+@use "../abstracts/colors" as clrs;
+@use "../base/typography" as type;
+
+.error-main {
+    min-height: 80vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 3rem 1.5rem;
+
+    background-color: var(--color-bg);
+}
+
+.error-card {
+    width: 100%;
+    max-width: 42rem;
+
+    padding: 4rem 3rem;
+
+    text-align: center;
+
+    background-color: var(--color-surface);
+
+    border: 1px solid var(--color-border);
+    border-radius: 1rem;
+
+    box-shadow: 0 0.4rem 2rem rgba(22, 61, 38, 0.08);
+}
+
+.error-card__title {
+    margin-bottom: 0.5rem;
+
+    font-size: type.font-size("display");
+    font-weight: type.font-weight("bold");
+
+    line-height: 1;
+
+    color: var(--color-primary-dark);
+}
+
+.error-card__subtitle {
+    margin-bottom: 2.5rem;
+
+    font-size: type.font-size("body");
+    line-height: 1.6;
+
+    color: var(--color-text-muted);
+}
+
+.error-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+
+    flex-wrap: wrap;
+}

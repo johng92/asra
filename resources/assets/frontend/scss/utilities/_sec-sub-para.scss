@@ -1,0 +1,7 @@
+@use "../base/typography" as type;
+
+.sec-sub-para {
+    font-size: type.font-size("small");
+    font-weight: type.font-weight("semibold");
+    color: var(--color-text);
+}

@@ -1,0 +1,43 @@
+@use "../base/typography" as type;
+@use "../utilities/padding" as pad;
+
+.impact {
+    display: flex;
+    flex-wrap: wrap;
+    /* justify-content: center; */
+    width: 100%;
+    padding: pad.padding-d-v("sm");
+
+    &__items {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+    }
+
+    &__item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    &__icon {
+        font-size: type.font-size("h1");
+        color: var(--color-orange-600);
+        align-self: center;
+    }
+}
+
+.fa-people-group {
+    color: var(--color-green-900);
+}
+.fa-house-chimney {
+    color: var(--color-green-700);
+}
+
+.fa-heart {
+    color: var(--color-red-orange);
+}
+
+.fa-users {
+    color: var(--color-green-success);
+}

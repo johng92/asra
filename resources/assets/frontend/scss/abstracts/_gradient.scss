@@ -1,0 +1,21 @@
+@use "sass:map";
+
+$gradients: (
+    "gradient-primary": linear-gradient(
+        135deg,
+        var(--color-primary-dark),
+        var(--color-action)
+    )
+);
+
+@function gradient($name) {
+    @return map.get($gradients, $name);
+}
+
+
+// Usage, example in hero.scss
+// @use "../abstracts/gradients" as grad;
+
+// .hero {
+//     background-image: grad.gradient("gradient-primary");
+// }

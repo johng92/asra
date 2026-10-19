@@ -1,0 +1,42 @@
+@use "../abstracts/colors" as clrs;
+@use "../base/typography" as type;
+
+
+.btn-primary,
+.btn-secondary {
+    display: inline-block;
+
+    padding: 0.8rem 1.8rem;
+
+    border-radius: 0.6rem;
+
+    font-size: type.font-size("small");
+    font-weight: type.font-weight("semibold");
+
+    text-decoration: none;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    color: var(--color-text-on-dark);
+}
+
+.btn-primary:hover {
+    background-color: var(--color-primary-dark);
+    transform: translateY(-0.1rem);
+}
+
+.btn-secondary {
+    background-color: var(--color-primary-light);
+    color: var(--color-primary-dark);
+}
+
+.btn-secondary:hover {
+    background-color: var(--color-green-100);
+    transform: translateY(-0.1rem);
+}

@@ -1,0 +1,33 @@
+@use "../base/typography" as type;
+
+.sec-mini-title {
+    font-size: type.font-size("small");
+    font-weight: type.font-weight("semibold");
+    color: var(--color-primary);
+
+    position: relative;
+    display: inline-block;
+
+    &::before,
+    &::after {
+        content: "";
+
+        position: absolute;
+        top: 50%;
+
+        width: 2rem;
+        height: 0.2rem;
+
+        background-color: var(--color-primary);
+
+        transform: translateY(-50%);
+    }
+
+    &::before {
+        left: -60%;
+    }
+
+    &::after {
+        right: -60%;
+    }
+}
