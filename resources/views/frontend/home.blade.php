@@ -120,5 +120,32 @@
         </div>
       </div>
     </section>
+
+    <!-- --------------purpose---- -->
+         <section class="purpose ">
+      <div class="purpose__content">
+        <h2 class="purpose__content-title ">OUR PURPOSE</h2>
+
+        <p class="purpose__content-para ">
+          Care Today, Stronger Communities Tomorrow
+        </p>
+
+        <span class="purpose__content-desc ">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt
+          minus veniam, vero dolores eveniet molestias quaerat in id itaque,
+          iusto sapiente ipsam iure doloremque possimus magni deserunt aut,
+          pariatur debitis?
+        </span>
+
+        <button class="purpose__content-btn cta">
+          <a href="#" class=""
+            >Learn More About Us <i class="fa-solid fa-arrow-right-long"></i
+          ></a>
+        </button>
+      </div>
+      <figure class="purpose__img">
+        <img src="{{ asset('frontend/images/storis.jpg') }}" alt="">
+      </figure>
+    </section>
 </body>
 </html>
