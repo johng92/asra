@@ -201,5 +201,52 @@
         </div>
       </div>
     </section>
+
+
+        <!-- *********************************************************Gallery********************************************************************************** -->
+    <section class="gallery ">
+      <div class="gallery__header">
+        <p class="gallery__header-title sec-sub-title ">
+          Moments of Strenght and Hope
+          <span class=""
+            >A glimpse into the lives, stories and activities from our
+            communities.</span
+          >
+        </p>
+
+        <button class="purpose__content-btn gallery__header-btn">
+          <a href="#"
+            >View Full Gallery <i class="fa-solid fa-arrow-right-long"></i
+          ></a>
+        </button>
+      </div>
+
+      <div class="gallery__items ">
+        <div class="gallery__item">
+          <figure class="gallery__item-figure">
+             <img src="{{ asset('frontend/images/storis.jpg') }}" alt="">
+          </figure>
+          <p class="glalery__item-para">Community gothering</p>
+        </div>
+        <div class="gallery__item">
+          <figure class="gallery__item-figure">
+             <img src="{{ asset('frontend/images/womens.jpg') }}" alt="">
+          </figure>
+          <p class="glalery__item-para">Livelihood support</p>
+        </div>
+        <div class="gallery__item">
+          <figure class="gallery__item-figure">
+            <img src="{{ asset('frontend/images/sitting-old-man.jpg') }}" alt="">
+          </figure>
+          <p class="glalery__item-para">Health comp</p>
+        </div>
+        <div class="gallery__item">
+          <figure class="gallery__item-figure">
+            <img src="{{ asset('frontend/images/women.jpg') }}" alt="">
+          </figure>
+          <p class="glalery__item-para">Celebrothing life</p>
+        </div>
+      </div>
+    </section>
 </body>
 </html>
