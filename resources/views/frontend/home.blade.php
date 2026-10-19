@@ -147,5 +147,59 @@
         <img src="{{ asset('frontend/images/storis.jpg') }}" alt="">
       </figure>
     </section>
+
+    
+    <!-- /*********************************************/ -->
+    <!----------------Services------------------>
+    <!-- /*********************************************/ -->
+
+    <section class="services  ">
+      <h2 class="section__title sec-par">HOW WE HELP</h2>
+
+      <h3 class="services__mini-title sec-title">Creating Real change, Together</h3>
+
+      <div class="services__items services__cards ">
+        <div class="services__item">
+          <a href="#" class="services__item-icon"
+            ><i class="fa-solid fa-hand-holding-heart"></i
+          ></a>
+
+          <p class="services__item-title">Healthcare Support</p>
+          <span class="section__para"
+            >Health Camps, check-ups and essentionl medieines,</span
+          >
+        </div>
+        <div class="services__item">
+          <a href="#" class="services__item-icon services__item-user"
+            ><i class="fas fa-gears"></i
+          ></a>
+
+          <p class="services__item-title">Livelihood Assistance</p>
+          <span class="section__para"
+            >Support for sustainable income opportunities.</span
+          >
+        </div>
+        <div class="services__item">
+          <a href="#" class="services__item-icon"
+            ><i class="fa-solid fa-users-gear"></i
+          ></a>
+
+          <p class="services__item-title">Social Inclusion</p>
+          <span class="section__para"
+            >Reducing isolotion and buliding community support.</span
+          >
+        </div>
+        <div class="services__item">
+          <a href="#" class="services__item-icon services__item-bood-open"
+            ><i class="fa-solid fa-book-open"></i
+          ></a>
+
+          <p class="services__item-title">Rights & Awareness</p>
+          <span class="section__para"
+            >Guidance on government schemed and elder rights.</span
+          >
+        </div>
+      </div>
+    </section>
 </body>
 </html>
