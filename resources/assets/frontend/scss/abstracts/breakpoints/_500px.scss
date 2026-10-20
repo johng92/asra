@@ -2,3 +2,25 @@
 @use "../../abstracts/gradient" as grad;
 @use "../../abstracts/colors" as clrs;
 @use "../../base/typography" as type;
+
+@media screen and (max-width: 500px) {
+    .hero {
+        &__links-support,
+        &__links-story {
+            width: 100%;
+        }
+    }
+
+    // <-----get-involved--->
+
+    .get-involved {
+        &__links {
+            flex-wrap: wrap;
+
+            &-donate,
+            &-help {
+                width: 100%;
+            }
+        }
+    }
+}
