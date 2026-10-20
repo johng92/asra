@@ -248,5 +248,107 @@
         </div>
       </div>
     </section>
+
+    <!--  -->
+
+    
+    <section class="stories ">
+      <div class="stories__header">
+        <p class="stories__header-title">
+          REAL STORIES
+          <span class="section__title stories__header-mini-title">
+            Voices That Inspire
+          </span>
+        </p>
+        <button class="stories__header-btn">
+          <a href="#">
+            Read More Stories <i class="fa-solid fa-arrow-right-long"></i>
+          </a>
+        </button>
+      </div>
+
+      <div class="story-cards responsive-grid">
+        <div class="story-card">
+          <figure class="story-card__image">
+           <img src="{{ asset('frontend/images/womens.jpg') }}" alt="">
+          </figure>
+          <div class="story-card__content">
+            <h3 class="story-card__title ">
+              A New Beginnign At 72
+            </h3>
+            <p class="story-card__excerpt ">
+              With With Livelihood support , Ram Nawa can now support himself
+              and live with dignity,
+            </p>
+
+            <button class="story-card__link">
+              <a href="#">
+                Read More Stories <i class="fa-solid fa-arrow-right-long"></i>
+              </a>
+            </button>
+          </div>
+        </div>
+        <div class="story-card">
+          <figure class="story-card__image">
+           <img src="{{ asset('frontend/images/storis.jpg') }}" alt="">
+          </figure>
+          <div class="story-card__content">
+            <h3 class="story-card__title ">
+              A New Beginnign At 72
+            </h3>
+            <p class="story-card__excerpt ">
+              With With Livelihood support , Ram Nawa can now support himself
+              and live with dignity,
+            </p>
+
+            <button class="story-card__link">
+              <a href="#">
+                Read More Stories <i class="fa-solid fa-arrow-right-long"></i>
+              </a>
+            </button>
+          </div>
+        </div>
+        <div class="story-card">
+          <figure class="story-card__image">
+            <img src="{{ asset('frontend/images/storis.jpg') }}" alt="">
+          </figure>
+          <div class="story-card__content">
+            <h3 class="story-card__title section__title">
+              A New Beginnign At 72
+            </h3>
+            <p class="story-card__excerpt ">
+              With With Livelihood support , Ram Nawa can now support himself
+              and live with dignity,
+            </p>
+
+            <button class="story-card__link">
+              <a href="#">
+                Read More Stories <i class="fa-solid fa-arrow-right-long"></i>
+              </a>
+            </button>
+          </div>
+        </div>
+        <div class="story-card">
+          <figure class="story-card__image">
+            <img src="{{ asset('frontend/images/storis.jpg') }}" alt="">
+          </figure>
+          <div class="story-card__content">
+            <h3 class="story-card__title ">
+              A New Beginnign At 72
+            </h3>
+            <p class="story-card__excerpt ">
+              With With Livelihood support , Ram Nawa can now support himself
+              and live with dignity,
+            </p>
+
+            <button class="story-card__link">
+              <a href="#">
+                Read More Stories <i class="fa-solid fa-arrow-right-long"></i>
+              </a>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
 </body>
 </html>
