@@ -350,5 +350,40 @@
         </div>
       </div>
     </section>
+
+    <section class="get-involved">
+
+    <div class="get-involved__content">
+      <h3 class="get-involved__content-title">GET INVOLVED</h3>
+      <h3 class="get-involved__content-mini-title">You Can Make a Difference</h3>
+      <p class="get-involved__content-para">Your support helps us reach more elderly people and areat lasting change in their lives.</p>
+
+      <div class="get-involved__links">
+        <a href="#" class="get-involved__links-donate">Donate Now</a>
+        <a href="#" class="get-involved__links-help">Other Ways to Help</a>
+      </div>
+    </div>
+
+  <div class="involvement-options ">
+  <div class="involvement">
+    <a class="involvement__icon" href="#">🛒</a>
+    <h3 class="involvement__title">Volunteer</h3>
+    <p class="involvement__description">Your time and skills con bring a smille.</p>
+
+  </div>
+  <div class="involvement">
+    <a class="involvement__icon" href="#">🛒</a>
+    <h3 class="involvement__title">Volunteer</h3>
+    <p class="involvement__description">Your time and skills con bring a smille.</p>
+
+  </div>
+  <div class="involvement">
+    <a class="involvement__icon" href="#">🛒</a>
+    <h3 class="involvement__title">Volunteer</h3>
+    <p class="involvement__description">Your time and skills con bring a smille.</p>
+
+  </div>
+  </div>
+    </section>
 </body>
 </html>

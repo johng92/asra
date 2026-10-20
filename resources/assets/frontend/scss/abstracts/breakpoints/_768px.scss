@@ -116,4 +116,18 @@
         }
     }
 
+
+    // <------------get-involved ------------>
+    .get-involved  {
+        flex-direction: column;
+        gap: 2rem;
+
+        &__content {
+            width: 100%;
+        }
+    }
+
+    .involvement-options {
+        width: 100%;
+    } 
 }
