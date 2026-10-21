@@ -11,6 +11,7 @@
         display: flex;
         gap: 1rem;
         justify-content: space-between;
+        flex-wrap: wrap;
 
         &-eybrow {
             font-size: type.font-size("caption");
@@ -19,6 +20,7 @@
 
         &-title {
             font-size: type.font-size("h3");
+            line-height: 1.1;
         }
     }
 
