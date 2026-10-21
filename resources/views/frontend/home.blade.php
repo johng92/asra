@@ -385,5 +385,69 @@
   </div>
   </div>
     </section>
+
+
+    <section class="blog">
+
+    <div class="blog__header">
+      <div class="">
+    <h3 class="blog__header-eybrow">LATEST FROM OUR BLOG</h3>
+    <h2 class="blog__header-title">Insights, Updates and Stories</h2>
+    </div>
+
+    <div class="blog__action ">
+      <a href="#" class="blog__action-link">View All Psts</a>
+
+    </div>
+    
+    </div>
+
+   <div class="blog-grid responsive-grid">
+      <div class="blog-card">
+         <figure class="blog-card__image">
+          <img src="{{ asset('frontend/images/storis.jpg') }}" alt="">
+        </figure>
+       <div class="blog-card__content">
+          <h4 class="blog-card__category">COMMUNITY</h4>
+          <h2 class="blog-card__title">Why Elderly Care Matters in Rural India</h2>
+
+          <div class="blog-card__time">
+            <p class="blog-card__time-date">Sep 25, 2026</p>
+            <a href="#" class="blog-card__time-link">Read More <i class="fa-solid fa-arrow-right-long"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="blog-card">
+         <figure class="blog-card__image">
+          <img src="{{ asset('frontend/images/old-man.jpg') }}" alt="">
+        </figure>
+       <div class="blog-card__content">
+          <h4 class="blog-card__category">COMMUNITY</h4>
+          <h2 class="blog-card__title">Why Elderly Care Matters in Rural India</h2>
+
+          <div class="blog-card__time">
+            <p class="blog-card__time-date">Sep 25, 2026</p>
+            <a href="#" class="blog-card__time-link">Read More <i class="fa-solid fa-arrow-right-long"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="blog-card">
+         <figure class="blog-card__image">
+          <img src="{{ asset('frontend/images/storis.jpg') }}" alt="">
+        </figure>
+       <div class="blog-card__content">
+          <h4 class="blog-card__category">COMMUNITY</h4>
+          <h2 class="blog-card__title">Why Elderly Care Matters in Rural India</h2>
+
+          <div class="blog-card__time">
+            <p class="blog-card__time-date">Sep 25, 2026</p>
+            <a href="#" class="blog-card__time-link">Read More <i class="fa-solid fa-arrow-right-long"></i></a>
+          </div>
+        </div>
+      </div>
+     
+   </div>
+
+    </section>
 </body>
 </html>
