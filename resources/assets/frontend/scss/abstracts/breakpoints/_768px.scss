@@ -7,6 +7,11 @@
     /* -------------------------- Header */
 
     .header {
+        position: sticky;
+        top: 0;
+        background-color: var(--color-white);
+        z-index: 9999;
+
         &__nav {
             flex-direction: column;
             justify-content: center;
@@ -14,7 +19,6 @@
             transition: all 0.55s ease-in-out;
             width: 50vw;
             height: 100vh;
-
             align-content: center;
             position: fixed;
             top: 0;
@@ -27,7 +31,7 @@
             display: flex;
             flex-direction: column;
 
-            padding: pad.padding-st-h("lg");
+            padding: pad.padding-st-h("md") pad.padding-st-v("xs");
             align-items: center;
         }
 
