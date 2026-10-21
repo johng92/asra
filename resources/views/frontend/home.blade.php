@@ -449,5 +449,64 @@
    </div>
 
     </section>
+
+    <section class="footer">
+      <div class="footer__main responsive-grid">
+        <div class="footer__brand">
+          <a href="#" class="footer__brand-title">Asra</a>
+          <p class="footer__brand-para">Working  for the core. dignity and better Livelihood of elderly peopel in imarginllsed communities ocross jharkhond.</p>
+       
+          <div class="footer__social ">
+            <a href="#" class="footer__social-link"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" class="footer__social-link"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" class="footer__social-link"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" class="footer__social-link"><i class="fa-brands fa-facebook-f"></i></a>
+          </div>
+           </div>
+
+        <div class="footer__links">
+          <h2 class="footer__links-title">Quick Links</h2>
+          <div class="">
+           <a href="#" class="footer__links-link">Home</a>
+           <a href="#" class="footer__links-link">About</a>
+           <a href="#" class="footer__links-link">Our Work</a>
+           <a href="#" class="footer__links-link">Stories</a>
+           <a href="#" class="footer__links-link">gallery</a>
+           <a href="#" class="footer__links-link">blog</a>
+           <a href="#" class="footer__links-link">Contact</a>
+          </div>
+        </div>
+        <div class="footer__involved">
+          <h2 class="footer__involved-title">Get Involved</h2>
+          <div class="">
+           <a href="#" class="footer__involved-link">Donote</a>
+           <a href="#" class="footer__involved-link">Volnuteer</a>
+           <a href="#" class="footer__involved-link">Partner With Us</a>
+           <a href="#" class="footer__involved-link">Sponsor a Couse</a>
+          </div>
+        </div>
+        <div class="footer__contacts">
+          <h2 class="footer__contacts-title">Contacts Us</h2>
+          <div class="">
+            <a href="#" class="footer__contacts-location"><i class="fa-solid fa-location-dot"></i> Dumka, JHARKHAND, India</a>
+            <a href="#" class="footer__contacts-location"><i class="fa-solid fa-location-dot"></i> Dumka, JHARKHAND, India</a>
+            <a href="#" class="footer__contacts-location"><i class="fa-solid fa-location-dot"></i> Dumka, JHARKHAND, India</a>
+          </div>
+        </div>
+      </div>
+
+      <hr>
+
+      <div class="footer__copyright">
+        <p class="footer__copyright-para"><a href="#">@2026</a> Asra All rights Reseved.</p>
+ 
+       <div class="footer__copyright-links">
+        <a href="#" class="footer__copyright-link">privacy Policy |</a>
+        <a href="#" class="footer__copyright-link">Terms of Use |</a>
+        <a href="#" class="footer__copyright-link">Sitemap</a>
+       </div>  
+     </div>
+
+    </section>
 </body>
 </html>
